@@ -338,7 +338,6 @@ impl Session {
 			}
 			PACKET_PING => {
 				try!(self.send_pong(io));
-				Ok(SessionData::None)
 				Ok(SessionData::Continue)
 			},
 			PACKET_PONG => {
