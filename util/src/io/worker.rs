@@ -111,8 +111,8 @@ impl Worker {
 			WorkType::Timeout => {
 				work.handler.timeout(&IoContext::new(channel, work.handler_id), work.token);
 			}
-			WorkType::Message(message) => {
-				work.handler.message(&IoContext::new(channel, work.handler_id), &message);
+			WorkType::Message(mut message) => {
+				work.handler.message(&IoContext::new(channel, work.handler_id), &mut message);
 			}
 		}
 	}
