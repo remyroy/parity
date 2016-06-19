@@ -875,7 +875,7 @@ impl<Message> IoHandler<NetworkIoMessage<Message>> for Host<Message> where Messa
 		}
 	}
 
-	fn message(&self, io: &IoContext<NetworkIoMessage<Message>>, message: &NetworkIoMessage<Message>) {
+	fn message(&self, io: &IoContext<NetworkIoMessage<Message>>, message: &mut NetworkIoMessage<Message>) {
 		if self.stopping.load(AtomicOrdering::Acquire) {
 			return;
 		}

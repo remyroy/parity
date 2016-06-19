@@ -50,7 +50,7 @@ impl IoHandler<NetSyncMessage> for ClientIoHandler {
 		}
 	}
 
-	fn message(&self, _io: &IoContext<NetSyncMessage>, message: &NetSyncMessage) {
+	fn message(&self, _io: &IoContext<NetSyncMessage>, message: &mut NetSyncMessage) {
 		match *message {
 			NetworkIoMessage::User(SyncMessage::StartNetwork) => {
 				info!("Starting network");
