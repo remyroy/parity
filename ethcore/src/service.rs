@@ -138,9 +138,8 @@ impl IoHandler<NetSyncMessage> for ClientIoHandler {
 				SyncMessage::BlockVerified => {
 					self.client.import_verified_blocks(&io.channel());
 				},
-				SyncMessage::NewTransactions(ref mut transactions) => {
-					let tx = ::std::mem::replace(transactions, Vec::new());
-					self.client.import_queued_transactions(tx);
+				SyncMessage::NewTransactions(ref transactions) => {
+					self.client.import_queued_transactions(&transactions);
 				},
 				_ => {}, // ignore other messages
 			}

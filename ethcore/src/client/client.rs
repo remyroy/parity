@@ -373,14 +373,14 @@ impl<V> Client<V> where V: Verifier {
 	}
 
 	/// Import transactions from the IO queue
-	pub fn import_queued_transactions(&self, transactions: Vec<Bytes>) -> usize {
+	pub fn import_queued_transactions(&self, transactions: &[Bytes]) -> usize {
 		let _timer = PerfTimer::new("import_queued_transactions");
 		self.queue_transactions.fetch_sub(transactions.len(), AtomicOrdering::SeqCst);
 		let fetch_account = |a: &Address| AccountDetails {
 			nonce: self.latest_nonce(a),
 			balance: self.latest_balance(a),
 		};
-		let tx = transactions.into_iter().filter_map(|bytes| UntrustedRlp::new(&bytes).as_val().ok()).collect();
+		let tx = transactions.iter().filter_map(|bytes| UntrustedRlp::new(&bytes).as_val().ok()).collect();
 		let results = self.miner.import_transactions(tx, fetch_account);
 		results.len()
 	}
