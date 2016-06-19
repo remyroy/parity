@@ -319,6 +319,7 @@ fn execute_export(conf: Configuration) {
 		boot_nodes: Vec::new(),
 		use_secret: None,
 		ideal_peers: 0,
+		reserved_nodes: Vec::new(),
 	};
 	let client_config = conf.client_config(&spec);
 
@@ -390,6 +391,7 @@ fn execute_import(conf: Configuration) {
 		boot_nodes: Vec::new(),
 		use_secret: None,
 		ideal_peers: 0,
+		reserved_nodes: Vec::new(),
 	};
 	let client_config = conf.client_config(&spec);
 
