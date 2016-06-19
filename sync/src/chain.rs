@@ -1116,6 +1116,7 @@ impl ChainSync {
 			debug!(target:"sync", "Unexpected packet from unregistered peer: {}:{}", peer, io.peer_info(peer));
 			return;
 		}
+		let _timer = PerfTimer::new("on_packet");
 		let result = match packet_id {
 			STATUS_PACKET => self.on_peer_status(io, peer, &rlp),
 			TRANSACTIONS_PACKET => self.on_peer_transactions(io, peer, &rlp),
