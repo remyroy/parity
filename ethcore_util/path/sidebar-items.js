@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["restrict_permissions_owner","Restricts the permissions of given path only to the owner."]],"mod":[["ethereum","Default ethereum paths"]]});
